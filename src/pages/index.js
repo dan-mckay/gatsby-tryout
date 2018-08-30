@@ -17,6 +17,17 @@ const IndexPage = ({ data }) => {
             </h2>
             <p>{frontmatter.date}</p>
             <p>{frontmatter.excerpt}</p>
+            <ul>
+              {post.frontmatter.tags.map(tag => {
+                return (
+                  <li>
+                    <Link to={`/tags/${tag}`}>
+                      {tag}
+                    </Link>
+                  </li>  
+                )
+              })}
+            </ul>
           </div>  
         )
       })}
@@ -33,7 +44,7 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date(formatString: "DD MMM, YYYY")
+            date
             path
             tags
             excerpt
@@ -43,5 +54,5 @@ export const query = graphql`
     }
   }
 `
-
+//date(formatString: "DD MMM, YYYY")
 export default IndexPage
